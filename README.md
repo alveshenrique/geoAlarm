@@ -1,1 +1,2 @@
 # geoAlarm
+# This app is an alarm that uses your position on the space, rather than on time, as a trigger for an alarm. For instance, instead of using as a common alarm like "turn on the alarm when the time gets to 10AM", this alarm will be used as "turn on the alarm when I'm at 500meters away from the destination point".
