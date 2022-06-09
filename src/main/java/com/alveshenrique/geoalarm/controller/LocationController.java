@@ -1,8 +1,10 @@
 package com.alveshenrique.geoalarm.controller;
 
+import com.alveshenrique.geoalarm.exception.ResourceNotFoundException;
 import com.alveshenrique.geoalarm.model.Location;
 import com.alveshenrique.geoalarm.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +30,13 @@ public class LocationController {
     @PostMapping("/locations")
     public Location createLocation(@RequestBody Location location) {
         return locationRepository.save(location);
+    }
+
+    // get location by id REST API
+    @GetMapping("/locations/{id}")
+    public ResponseEntity<Location> getLocationById(@PathVariable long id) {
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Location with id " + id + " not found."));
+        return  ResponseEntity.ok(location);
     }
 }
