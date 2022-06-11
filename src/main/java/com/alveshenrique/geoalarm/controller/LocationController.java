@@ -39,4 +39,24 @@ public class LocationController {
                 .orElseThrow(() -> new ResourceNotFoundException("Location with id " + id + " not found."));
         return  ResponseEntity.ok(location);
     }
+
+    // update location REST API
+    @PutMapping("/locations/{id}")
+    public ResponseEntity<Location> updateLocation(@PathVariable Long id, @RequestBody Location locationDetails) {
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Location with id " + id + " not found."));
+
+        location.setStreet1(locationDetails.getStreet1());
+        location.setStreet2(locationDetails.getStreet2());
+        location.setCity(locationDetails.getCity());
+        location.setStateRegion(locationDetails.getStateRegion());
+        location.setCountry(locationDetails.getCountry());
+        location.setZipCode(locationDetails.getZipCode());
+        location.setLatitude(locationDetails.getLatitude());
+        location.setLongitude(locationDetails.getLongitude());
+
+        Location updatedLocation = locationRepository.save(location);
+
+        return ResponseEntity.ok(updatedLocation);
+    }
 }
