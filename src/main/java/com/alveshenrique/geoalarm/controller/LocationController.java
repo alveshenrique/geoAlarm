@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Allow  Cross-Origin Resource Sharing (CORS) for the frontend app on localhost.
 // TODO CHANGE IT FOR PRODUCTION AND CHECK FOR BETTER OPTIONS WITH SPRING SECURITY
@@ -58,5 +60,16 @@ public class LocationController {
         Location updatedLocation = locationRepository.save(location);
 
         return ResponseEntity.ok(updatedLocation);
+    }
+
+    // delete location REST API
+    @DeleteMapping("/locations/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteLocation(@PathVariable Long id) {
+        Location location = locationRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Location with id " + id + " not found."));
+        locationRepository.delete(location);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
