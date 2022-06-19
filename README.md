@@ -1,2 +1,13 @@
-# geoAlarm
-# This app is an alarm that uses your position on the space, rather than on time, as a trigger for an alarm. For instance, instead of using as a common alarm like "turn on the alarm when the time gets to 10AM", this alarm will be used as "turn on the alarm when I'm at 500meters away from the destination point".
+# The current state of this app is UNDER DEVELOPMENT. This comment will be removed when the full app is released.
+
+# An alarm that won't let you miss the buss stop anymore!
+ This app is a tool that help people know when they are arriving at their destination.
+ The concept is quite simple: You mark a destination and set a distance by which the alarm will alert you when you are at such distance from the set destination. This app uses the Google Maps API and tools to get the destinations places (https://developers.google.com/maps/documentation/javascript/places), the gocoding (https://developers.google.com/maps/documentation/geocoding/overview), and the distance using the current location and the destination's LAT/LNG (https://developers.google.com/maps/documentation/javascript/geometry) while ploting the map positions of those entities on a map (https://www.npmjs.com/package/@angular/google-maps).
+ 
+ On this repository you will find the full code of the backemd counterpart of the app located at:
+ Google Playstore: (not published yet)
+ Web: https://igeoalarm.web.app/
+
+The frontend counterpart can be found at: https://github.com/alveshenrique/ionic-geo-alarm-front
+
+To use this code, follow this instructions:
